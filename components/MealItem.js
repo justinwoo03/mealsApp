@@ -6,31 +6,23 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
+import MealSummary from "./MealSummary";
 
-export default function MealItem({ title, meal }) {
+export default function MealItem({ title, meal, onPress }) {
   return (
     <>
       <View style={styles.mealItem}>
         <Pressable
           android_ripple={{ color: "#ccc" }}
           style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+          onPress={onPress}
         >
           <View style={styles.innerContainer}>
             <View>
               <Image source={{ uri: meal.imageUrl }} style={styles.image} />
               <Text style={styles.title}>{title}</Text>
             </View>
-            <View style={styles.details}>
-              <Text style={styles.detailItem}>
-                {meal.duration.toString().toUpperCase()}m
-              </Text>
-              <Text style={styles.detailItem}>
-                {meal.complexity.toString().toUpperCase()}
-              </Text>
-              <Text style={styles.detailItem}>
-                {meal.affordability.toString().toUpperCase()}
-              </Text>
-            </View>
+            <MealSummary meal={meal}/>
           </View>
         </Pressable>
       </View>
@@ -66,15 +58,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
     shadowOpacity: 0.25,
-  },
-  details: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 8,
-  },
-  detailItem: {
-    marginHorizontal: 4,
-    fontSize: 12,
   },
 });
