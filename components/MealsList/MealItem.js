@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
-import MealSummary from "./MealSummary";
+import MealSummary from "../MealSummary";
 
 export default function MealItem({ title, meal, onPress }) {
   return (
